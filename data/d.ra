@@ -1,0 +1,22 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+studMarks <- CROSS Student, Marks
+temp2 <- SELECT Student_Stud_Id == Marks_Stud_Id FROM studMarks
+mathsCheck <- SELECT Maths_marks >= 70 FROM temp2
+phyCheck <- SELECT Physics_marks > 60 FROM mathsCheck
+ageChk <- SELECT Stud_age >= 16 FROM phyCheck
+ageChk2 <- SELECT Stud_age <= 18 FROM ageChk
+RENAME Student_Stud_Id TO stud_id FROM ageChk2
+ans4 <- PROJECT stud_id, Maths_marks, Physics_marks, Stud_age FROM ageChk2
+RENAME Stud_age TO stud_age FROM ans4
+CLEAR studMarks
+CLEAR temp2
+CLEAR mathsCheck
+CLEAR phyCheck
+CLEAR ageChk
+CLEAR ageChk2
+CLEAR Student
+CLEAR Advisor
+CLEAR Marks
+PRINT ans4

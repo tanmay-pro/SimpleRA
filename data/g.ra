@@ -1,0 +1,16 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+stuAdv <- CROSS Student, Advisor
+temp <- SELECT Advisor_id == Adv_Id FROM stuAdv
+advAge <- SELECT Adv_age > 40 FROM temp
+RENAME Stud_Id TO stud_id FROM advAge
+RENAME Advisor_id TO adv_id FROM advAge
+ans7 <- PROJECT stud_id, adv_id FROM advAge
+CLEAR stuAdv
+CLEAR temp
+CLEAR advAge
+CLEAR Student
+CLEAR Advisor
+CLEAR Marks
+PRINT ans7

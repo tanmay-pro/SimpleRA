@@ -1,0 +1,12 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+male_stud <- SELECT Stud_sex == 0 FROM Student
+ans <- PROJECT Stud_Id, Stud_age FROM male_stud
+RENAME Stud_Id TO stud_id FROM ans
+RENAME Stud_age TO stud_age FROM ans
+CLEAR male_stud
+CLEAR Student
+CLEAR Advisor
+CLEAR Marks
+PRINT ans
