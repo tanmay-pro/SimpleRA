@@ -70,7 +70,7 @@ LOAD <table_name>
 ```
 - To successfully load a table, there should be a CSV file named <table_name>.csv consisting of comma-separated integers in the data folder
 - None of the columns in the data file should have the same name
-- every cell in the table should have a value
+- Every cell in the table should have a value
 
 Run: `LOAD A`
 
@@ -82,7 +82,7 @@ Syntax
 ```
 LIST TABLES
 ```
-This command lists all tables that have been loaded or created using assignment statements.
+- This command lists all tables that have been loaded or created using assignment statements
 
 Run: `LIST TABLES`
 Run: `LOAD B`, `LIST TABLES`
