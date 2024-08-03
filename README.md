@@ -39,13 +39,13 @@ Post compilation, an executable names ```server``` will be created in the ```src
 
 ### Commands
 
-There are 2 kinds of commands in this database
+There are 2 kinds of commands in this database:
 
 - Assignment statements
 - Non-assignment statements
 ---
 
-## Non Assignment Statements
+### Non Assignment Statements
 
 Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
 
@@ -60,7 +60,7 @@ Non-assignment statements do not create a new table (except load, which loads an
   
 ---
 
-### LOAD
+#### LOAD
 
 Syntax:
 ```
@@ -74,7 +74,7 @@ Run: `LOAD A`
 
 ---
 
-### LIST TABLES
+#### LIST TABLES
 
 Syntax
 ```
@@ -87,7 +87,7 @@ Run: `LOAD B`, `LIST TABLES`
 
 ---
 
-### PRINT
+#### PRINT
 
 Syntax
 ```
@@ -101,7 +101,7 @@ Run: `PRINT B`
 
 ---
 
-### RENAME
+#### RENAME
 
 Syntax
 ```
@@ -115,7 +115,7 @@ Run: `RENAME b TO c FROM B`
 
 ---
 
-### EXPORT
+#### EXPORT
 
 Syntax
 ```
@@ -129,7 +129,7 @@ Run: `EXPORT B`
 
 ---
 
-### CLEAR
+#### CLEAR
 
 Syntax
 ```
@@ -143,7 +143,7 @@ Run: `CLEAR B`
 
 ---
 
-### QUIT
+#### QUIT
 
 Syntax
 ```
@@ -156,7 +156,7 @@ Run: `QUIT`
 
 ---
 
-### INDEX
+#### INDEX
 
 Syntax:
 ```
@@ -170,17 +170,11 @@ Where <indexing_strategy> could be
 
 ---
 
-## Assignment Statements
+### Assignment Statements
 
-- All assignment statements lead to the creation of a new table. 
-
+- All assignment statements lead to the creation of a new table.
 - Every statement is of the form ```<new_table_name> <- <assignment_statement>``` 
-
 - Naturally in all cases, <new_table_name> shouldn't already exist in the system
-
----
-
-## Assignment Statements
 
 - CROSS
 - PROJECTION
@@ -191,7 +185,7 @@ Where <indexing_strategy> could be
 
 ---
 
-### CROSS
+#### CROSS
 
 Syntax
 ```
@@ -207,7 +201,7 @@ Run: `cross_AA <- CROSS A A`
 
 ---
 
-### SELECTION
+#### SELECTION
 
 Syntax
 ```
@@ -231,7 +225,7 @@ Run: `R <- SELECT a >= 1 FROM A`
 
 ---
 
-### PROJECTION
+#### PROJECTION
 
 Syntax
 ```
@@ -244,7 +238,7 @@ Run: `C <- PROJECT c FROM A`
 
 ---
 
-### DISTINCT
+#### DISTINCT
 
 Syntax
 ```
@@ -257,7 +251,7 @@ Exmample: `D <- DISTINCT A`
 
 ---
 
-### JOIN
+#### JOIN
 
 Syntax
 ```
@@ -272,7 +266,7 @@ Example: `J <- JOIN A, B ON a == a`
 
 ---
 
-### SORT
+#### SORT
 
 Syntax
 ```
@@ -285,7 +279,7 @@ Example: `S <- SORT A BY b IN ASC`
 
 ---
 
-### SOURCE
+#### SOURCE
 
 Syntax
 ```
@@ -309,7 +303,7 @@ SOURCE <query_name>
 
 ---
 
-### Command Execution Flow
+#### Command Execution Flow
 
 ![](flow.png)
 
@@ -317,17 +311,17 @@ Run: `LOAD A` with debugger
 
 ---
 
-### Syntactic Parser
+#### Syntactic Parser
 
 - Splits the query into query units
 
-### Semantic Parser
+#### Semantic Parser
 
 - Makes sure the given query makes semantic sense
 
 ---
 
-### Executors
+#### Executors
 
 Every command(COMMAND) has a file in the executors' directory
 
@@ -339,20 +333,20 @@ executeCOMMAND
 
 ---
 
-### Buffer Manager
+#### Buffer Manager
 
 - Load splits and stores the table into blocks.
 - It follows a FIFO paradigm.
 
 ---
 
-### Table Catalogue
+#### Table Catalogue
 
 - The table catalogue is an index of tables currently loaded into the system
 
 ---
 
-### Cursors
+#### Cursors
 
 - A cursor is an object that acts like a pointer in a table.
 - To read from a table, we need to declare a cursor
@@ -363,7 +357,7 @@ Run: `R <- SELECT a == 1 FROM A` with debugger
 
 ---
 
-### Logger
+#### Logger
 
 Every function call is logged in a file named "log"
 
