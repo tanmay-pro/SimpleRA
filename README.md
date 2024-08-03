@@ -36,14 +36,7 @@ Post compilation, an executable names ```server``` will be created in the ```src
 
 - Relational Algebra Operators
 - Integers Only
-- No update operations
-- No aggregate operations
-- No nested queries
-- No transaction management
-- Single thread programming only
 - No identifiers should have spaces in them
-
-
 ---
 
 ### Commands
