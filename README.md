@@ -35,17 +35,19 @@ Post compilation, an executable names ```server``` will be created in the ```src
 - Relational Algebra Operators
 - Integers Only
 - No identifiers should have spaces in them
+- The RDBMS supports storage of both matrices and tables
 ---
 
 ### Commands
 
-There are 2 kinds of commands in this database:
+There are 3 kinds of commands in this database:
 
 - Assignment statements
 - Non-assignment statements
+- Matrix related commands
 ---
 
-### Non Assignment Statements
+### Non-Assignment Statements
 
 - Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
 - LOAD, LIST, PRINT, RENAME, EXPORT, CLEAR, QUIT, INDEX
