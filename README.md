@@ -2,9 +2,9 @@
 
 ## About Project
 
-This is a simplified relational database management system which supports basic database operations on integer-only tables and load, store and transpose operations efficiently on arbitrarily large matrices. Supported indexing schemes are linear hash and B+ tree. Supported sorting schemes are two-phase on-disk merge sort, and in-memory buffers are managed by delaying writes. There is no support for transaction or thread safety.
+This simplified relational database management system supports basic database operations on integer-only tables and loads, stores, and transposes operations efficiently on arbitrarily large matrices. Supported indexing schemes are linear hash and B+ tree. Supported sorting schemes are two-phase on-disk merge sort, and in-memory buffers are managed by delaying writes. There is no support for transaction or thread safety.
 
-For more details, see accompanying documentation.
+For more details, see the accompanying documentation.
 
 ## Compilation Instructions
 
@@ -45,14 +45,11 @@ There are 2 kinds of commands in this database.
 
 - Assignment statements
 - Non-assignment statements
-
-_Note: Not all operators have been implemented, some have been omitted for you to implement in later phases_
-
 ---
 
 ## Non Assignment Statements
 
-Non-assginment statements do not create a new table (except load which just loads an existing table) in the process
+Non-assignment statements do not create a new table (except load, which loads an existing table) in the process.
 
 - LOAD
 - LIST
@@ -61,14 +58,8 @@ Non-assginment statements do not create a new table (except load which just load
 - EXPORT
 - CLEAR
 - QUIT
-
----
-
-## Non Assignment Statements
-
-The following haven't been implemented
 - INDEX
-
+  
 ---
 
 ### LOAD
@@ -77,7 +68,7 @@ Syntax:
 ```
 LOAD <table_name>
 ```
-- To successfully load a table, there should be a csv file names <table_name>.csv consisiting of comma-seperated integers in the data folder
+- To successfully load a table, there should be a CSV file named <table_name>.csv consisting of comma-separated integers in the data folder
 - None of the columns in the data file should have the same name
 - every cell in the table should have a value
 
@@ -91,7 +82,7 @@ Syntax
 ```
 LIST TABLES
 ```
-This command lists all tables that have been loaded or created using assignment statements
+This command lists all tables that have been loaded or created using assignment statements.
 
 Run: `LIST TABLES`
 Run: `LOAD B`, `LIST TABLES`
@@ -106,7 +97,7 @@ PRINT <table_name>
 ```
 
 - Displays the first PRINT_COUNT (global variable) rows of the table. 
-- Less number of rows can be printed if the table has only a few rows
+- A smaller number of rows can be printed if the table has only a few rows
 
 Run: `PRINT B`
 
@@ -133,8 +124,8 @@ Syntax
 EXPORT <table_name>
 ```
 
-- All changes made and new tables created, exist only within the system and will be deleted once execution ends (temp file)
-- To keep changes made (RENAME and new tables), you have to export the table (data)
+- All changes made and new tables created exist only within the system and are deleted once execution ends (temp file)
+- To keep changes made (RENAME and new tables), the table needs to be exported (data)
 
 Run: `EXPORT B`
 
@@ -146,9 +137,9 @@ Syntax
 ```
 CLEAR <table_name>
 ```
-- Removes table from system
+- Removes table from the system
 - The table has to have previously existed in the system to remove it
-- If you want to keep any of the changes you've made to an old table or want to keep the new table, make sure to export !
+- If you want to keep any of the changes you've made to an old table or want to keep the new table, make sure to export!
 
 Run: `CLEAR B`
 
@@ -175,12 +166,9 @@ INDEX ON <columnName> FROM <table_name> USING <indexing_strategy>
 ```
 
 Where <indexing_strategy> could be 
-- `BTREE` - BTree indexing on column
+- `BTREE` - BTree indexing on a column
 - `HASH` - Index via a hashmap
 - `NOTHING` - Removes index if present 
-
----
-### Questions ?
 
 ---
 
@@ -199,8 +187,6 @@ Where <indexing_strategy> could be
 - CROSS
 - PROJECTION
 - SELECTION
-
-The following haven't been implemented
 - DISTINCT
 - JOIN
 - SORT
@@ -254,7 +240,7 @@ Syntax
 <new_table_name> <- PROJECT <column1>(,<columnN>)* FROM <table_name>
 ```
 
-- naturally all columns should be present in the original table
+- Naturally, all columns should be present in the original table
 
 Run: `C <- PROJECT c FROM A`
 
@@ -267,7 +253,7 @@ Syntax
 <new_table_name> <- DISTINCT <table_name>
 ```
 
-- naturally table should exist
+- Naturally table should exist
 
 Exmample: `D <- DISTINCT A`
 
@@ -308,10 +294,9 @@ Syntax
 SOURCE <query_name>
 ```
 - Special command that takes in a file script from the data directory
-- file name should end in ".ra" indicating it's a query file
+- File name should end in ".ra," indicating it's a query file
 - File to be present in the data folder
-- Used in last phase of project
-
+  
 ---
 
 ### Internals
@@ -320,7 +305,7 @@ SOURCE <query_name>
 
 - Cursors
 
-- Tables
+- Tables, Matrices
 
 - Executors
 
@@ -332,27 +317,21 @@ SOURCE <query_name>
 
 Run: `LOAD A` with debugger
 
-see: load.cpp
-
 ---
 
 ### Syntactic Parser
 
 - Splits the query into query units
 
-see: syntacticParser.h syntacticParser.cpp
-
 ### Semantic Parser
 
-- Makes sure your query makes semantic sense
-
-see: semanticParser.h semanticParser.cpp
+- Makes sure the given query makes semantic sense
 
 ---
 
 ### Executors
 
-Every command(COMMAND) has a file in the executors directory, within that directory you'll find 3 functions
+Every command(COMMAND) has a file in the executors' directory
 
 ```
 syntacticParseCOMMAND
@@ -364,9 +343,8 @@ executeCOMMAND
 
 ### Buffer Manager
 
-- Load splits and stores the table into blocks. For this we utilise the Buffer Manager
-
-- Buffer Manager follows a FIFO paradigm. Essentially a queue
+- Load splits and stores the table into blocks.
+- It follows a FIFO paradigm.
 
 ---
 
@@ -378,7 +356,8 @@ executeCOMMAND
 
 ### Cursors
 
-A cursor is an object that acts like a pointer in a table. To read from a table, you need to declare a cursor.
+- A cursor is an object that acts like a pointer in a table.
+- To read from a table, we need to declare a cursor
 
 ![](cursor.png)
 
@@ -388,6 +367,6 @@ Run: `R <- SELECT a == 1 FROM A` with debugger
 
 ### Logger
 
-Every function call is logged in file names "log"
+Every function call is logged in a file named "log"
 
 
