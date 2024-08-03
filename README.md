@@ -49,7 +49,7 @@ There are 2 kinds of commands in this database
 
 ## Non Assignment Statements
 
-Non-assignment statements do not create a new table (except load, which loads an existing table) in the process.
+Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
 
 - LOAD
 - LIST
