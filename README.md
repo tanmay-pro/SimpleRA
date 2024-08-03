@@ -56,7 +56,7 @@ There are 3 kinds of commands in this database:
 
 #### LOAD
 
-Syntax:
+Syntax
 ```
 LOAD <table_name>
 ```
@@ -257,7 +257,7 @@ SOURCE <query_name>
 
 #### LOAD
 
-Syntax:
+Syntax
 ```
 LOAD MATRIX <matrix_name>
 ```
@@ -370,7 +370,7 @@ executeCOMMAND
 
 #### Table Catalogue
 
-- The table catalogue is an index of tables, matrices currently loaded into the system
+- The table catalogue is an index of tables & matrices currently loaded into the system
 ---
 
 #### Cursors
@@ -380,8 +380,7 @@ executeCOMMAND
 
 ![](cursor.png)
 
-Run: `R <- SELECT a == 1 FROM A` with debugger
-
+- Example Command: `R <- SELECT a == 1 FROM A` with debugger
 ---
 
 #### Logger
