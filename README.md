@@ -41,7 +41,7 @@ Post compilation, an executable names ```server``` will be created in the ```src
 
 ### Commands
 
-There are 2 kinds of commands in this database.
+There are 2 kinds of commands in this database
 
 - Assignment statements
 - Non-assignment statements
