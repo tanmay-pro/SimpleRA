@@ -63,9 +63,6 @@ LOAD <table_name>
 - To successfully load a table, there should be a CSV file named <table_name>.csv consisting of comma-separated integers in the data folder
 - None of the columns in the data file should have the same name
 - Every cell in the table should have a value
-
-Run: `LOAD A`
-
 ---
 
 #### LIST TABLES
@@ -75,10 +72,6 @@ Syntax
 LIST TABLES
 ```
 - This command lists all tables that have been loaded or created using assignment statements
-
-Run: `LIST TABLES`
-Run: `LOAD B`, `LIST TABLES`
-
 ---
 
 #### PRINT
@@ -89,10 +82,7 @@ PRINT <table_name>
 ```
 
 - Displays the first PRINT_COUNT (global variable) rows of the table
-- A smaller number of rows can be printed if the table has only a few rows
-
-Run: `PRINT B`
-
+- A smaller number of rows are printed if the table has only a few rows (< PRINT_COUNT)
 ---
 
 #### RENAME
@@ -104,9 +94,6 @@ RENAME <toColumnName> TO <fromColumnName> FROM <table_name>
 
 - Naturally <table_name> should be a loaded table in the system and <fromColumnName> should be an exsiting column in the table
 - <toColumnName> should not be another column in the table
-
-Run: `RENAME b TO c FROM B`
-
 ---
 
 #### EXPORT
@@ -118,9 +105,6 @@ EXPORT <table_name>
 
 - All changes made and new tables created exist only within the system and are deleted once execution ends (temp file)
 - To keep changes made (RENAME and new tables), the table needs to be exported (data)
-
-Run: `EXPORT B`
-
 ---
 
 #### CLEAR
@@ -132,9 +116,6 @@ CLEAR <table_name>
 - Removes table from the system
 - The table has to have previously existed in the system to remove it
 - If we want to keep any of the changes we have made to an old table or want to keep the new table, we will have to export.
-
-Run: `CLEAR B`
-
 ---
 
 #### QUIT
@@ -145,9 +126,6 @@ QUIT
 ```
 
 - Clear all tables present in the system (**_WITHOUT EXPORTING THEM_**)  (temp file - empty)
-
-Run: `QUIT`
-
 ---
 
 #### INDEX
@@ -161,7 +139,6 @@ Where <indexing_strategy> could be
 - `BTREE` - BTree indexing on a column
 - `HASH` - Index via a hashmap
 - `NOTHING` - Removes index if present 
-
 ---
 
 ### Assignment Statements
@@ -183,7 +160,7 @@ Syntax
 - Both the tables being crossed should exist in the system
 - If there are columns with the same names in the two tables, the columns are indexed with the table name. If both tables being crossed are the same, table names are indexed with '1' and '2'
 
-Run: `cross_AA <- CROSS A A`
+Example Command: `cross_AA <- CROSS A A`
 
 `A(A, B) x A(A, B) -> cross_AA(A1_A, A1_B, A2_A, A2_B)`
 
@@ -208,9 +185,9 @@ Where <bin_op> can be any operator among {>, <, >=, <=, =>, =<, ==, !=}
 
 - The selection command only takes one condition at a time
 
-Run: `R <- SELECT a >= 1 FROM A`
-`S <- SELECT a > b FROM A`
-
+- Example Command: 
+  - `R <- SELECT a >= 1 FROM A`
+  - `S <- SELECT a > b FROM A`
 ---
 
 #### PROJECTION
@@ -221,9 +198,6 @@ Syntax
 ```
 
 - Naturally, all columns should be present in the original table
-
-Run: `C <- PROJECT c FROM A`
-
 ---
 
 #### DISTINCT
@@ -234,9 +208,6 @@ Syntax
 ```
 
 - Naturally, the table should exist
-
-Exmample: `D <- DISTINCT A`
-
 ---
 
 #### JOIN
@@ -250,8 +221,7 @@ Where <bin_op> means the same as it does in the SELECT operator
 
 - Implicitly assumes <column1> is from <table1> and <column2> if from <table2>
 
-Example: `J <- JOIN A, B ON a == a`
-
+- Example Command: `J <- JOIN A, B ON a == a`
 ---
 
 #### SORT
@@ -263,9 +233,9 @@ Syntax
 
 Where <sorting_order> can be `ASC` or `DESC`
 
-Example: `S <- SORT A BY b IN ASC`
-
+- Example Command: `S <- SORT A BY b IN ASC`  
 ---
+
 
 #### SOURCE
 
@@ -276,26 +246,98 @@ SOURCE <query_name>
 - Special command that takes in a file script from the data directory
 - File name should end in ".ra," indicating it's a query file
 - File to be present in the data folder
-  
+---
+
+### Matrix-related statements
+
+- Unlike tables, matrices do not have a column name
+- As it is an integer-only application, the values of the matrix are confined to integers
+- LOAD, PRINT, TRANSPOSE, RENAME, EXPORT, CHECKSYMMETRY, COMPUTE
+---
+
+#### LOAD
+
+Syntax:
+```
+LOAD MATRIX <matrix_name>
+```
+- To successfully load a matrix, there should be a CSV file named <matrix_name>.csv in the data folder
+- Each line of the file represents a row of the matrix
+- Values in the row are comma-separated
+---
+
+#### PRINT
+
+Syntax
+```
+PRINT MATRIX <matrix_name>
+```
+
+- Displays the first PRINT_COUNT (global variable) rows of the matrix
+- A smaller number of rows are printed if the matrix has only a few rows (< PRINT_COUNT)
+---
+
+#### TRANSPOSE
+
+Syntax
+```
+TRANSPOSE MATRIX <matrix_name>
+```
+
+- The command computes the transpose of the matrix IN-PLACE (Constant Space Complexity) 
+---
+
+#### RENAME 
+
+Syntax
+```
+RENAME MATRIX <matrix_currentname> TO <matrix_newname>
+```
+
+- Renames a Matrix that is present in memory from <matrix_currentname > to < matrix_newname >
+---
+
+#### EXPORT
+
+Syntax
+```
+EXPORT MATRIX <matrix_name>
+```
+
+- Similar to tables, the command exports matrix data to the data folder
+---
+
+#### CHECKSYMMETRY
+
+Syntax
+```
+CHECKSYMMETRY <matrix_name>
+```
+
+- Checks if the given matrix is symmetric or not
+- The function returns a boolean value
+- This function is also performed IN-PLACE
+---
+
+#### COMPUTE
+
+Syntax
+```
+COMPUTE <matrix_name>
+```
+
+- Computes the expression: `A - A'` where `A'` represents the transpose of the matrix `A`
+- The new matrix is stored as `<matrix_name>_RESULT`
 ---
 
 ### Internals
 
-- Buffer Manager
-
-- Cursors
-
-- Tables, Matrices
-
-- Executors
-
+- Buffer Manager, Cursors, Tables, Matrices, Executors
 ---
 
 #### Command Execution Flow
 
 ![](flow.png)
-
-Run: `LOAD A` with debugger
 
 ---
 
@@ -306,7 +348,6 @@ Run: `LOAD A` with debugger
 #### Semantic Parser
 
 - Makes sure the given query makes semantic sense
-
 ---
 
 #### Executors
@@ -325,13 +366,11 @@ executeCOMMAND
 
 - Load splits and stores the table into blocks.
 - It follows a FIFO paradigm.
-
 ---
 
 #### Table Catalogue
 
-- The table catalogue is an index of tables currently loaded into the system
-
+- The table catalogue is an index of tables, matrices currently loaded into the system
 ---
 
 #### Cursors
