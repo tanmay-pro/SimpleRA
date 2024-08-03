@@ -96,7 +96,7 @@ Syntax
 PRINT <table_name>
 ```
 
-- Displays the first PRINT_COUNT (global variable) rows of the table. 
+- Displays the first PRINT_COUNT (global variable) rows of the table
 - A smaller number of rows can be printed if the table has only a few rows
 
 Run: `PRINT B`
@@ -139,7 +139,7 @@ CLEAR <table_name>
 ```
 - Removes table from the system
 - The table has to have previously existed in the system to remove it
-- If you want to keep any of the changes you've made to an old table or want to keep the new table, make sure to export!
+- If we want to keep any of the changes we have made to an old table or want to keep the new table, we will have to export.
 
 Run: `CLEAR B`
 
@@ -158,7 +158,7 @@ Run: `QUIT`
 
 ---
 
-### INDEX*
+### INDEX
 
 Syntax:
 ```
@@ -246,20 +246,20 @@ Run: `C <- PROJECT c FROM A`
 
 ---
 
-### DISTINCT*
+### DISTINCT
 
 Syntax
 ```
 <new_table_name> <- DISTINCT <table_name>
 ```
 
-- Naturally table should exist
+- Naturally, the table should exist
 
 Exmample: `D <- DISTINCT A`
 
 ---
 
-### JOIN*
+### JOIN
 
 Syntax
 ```
@@ -274,7 +274,7 @@ Example: `J <- JOIN A, B ON a == a`
 
 ---
 
-### SORT*
+### SORT
 
 Syntax
 ```
