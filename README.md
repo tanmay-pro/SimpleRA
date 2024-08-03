@@ -47,16 +47,8 @@ There are 2 kinds of commands in this database:
 
 ### Non Assignment Statements
 
-Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
-
-- LOAD
-- LIST
-- PRINT
-- RENAME
-- EXPORT
-- CLEAR
-- QUIT
-- INDEX
+- Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
+- LOAD, LIST, PRINT, RENAME, EXPORT, CLEAR, QUIT, INDEX
   
 ---
 
@@ -175,13 +167,7 @@ Where <indexing_strategy> could be
 - All assignment statements lead to the creation of a new table.
 - Every statement is of the form ```<new_table_name> <- <assignment_statement>``` 
 - Naturally in all cases, <new_table_name> shouldn't already exist in the system
-
-- CROSS
-- PROJECTION
-- SELECTION
-- DISTINCT
-- JOIN
-- SORT
+- CROSS, PROJECTION, SELECTION, DISTINCT, JOIN, SORT
 
 ---
 
