@@ -378,7 +378,8 @@ executeCOMMAND
 - A cursor is an object that acts like a pointer in a table.
 - To read from a table, we need to declare a cursor
 
-![](cursor.png)
+![image](https://github.com/user-attachments/assets/8bba0815-feb5-434d-941a-e96599d4c565)
+
 
 - Example Command: `R <- SELECT a == 1 FROM A` with debugger
 ---
