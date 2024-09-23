@@ -47,6 +47,64 @@ There are 3 kinds of commands in this database:
 - Matrix related commands
 ---
 
+### Internals
+
+- Buffer Manager, Cursors, Tables, Matrices, Executors
+---
+
+#### Command Execution Flow
+
+![](flow.png)
+
+---
+
+#### Syntactic Parser
+
+- Splits the query into query units
+
+#### Semantic Parser
+
+- Makes sure the given query makes semantic sense
+---
+
+#### Executors
+
+Every command(COMMAND) has a file in the executors' directory
+
+```
+syntacticParseCOMMAND
+semanticParseCOMMAND
+executeCOMMAND
+```
+
+---
+
+#### Buffer Manager
+
+- Load splits and stores the table into blocks.
+- It follows a FIFO paradigm.
+---
+
+#### Table Catalogue
+
+- The table catalogue is an index of tables & matrices currently loaded into the system
+---
+
+#### Cursors
+
+- A cursor is an object that acts like a pointer in a table.
+- To read from a table, we need to declare a cursor
+
+![image](https://github.com/user-attachments/assets/8bba0815-feb5-434d-941a-e96599d4c565)
+
+
+- Example Command: `R <- SELECT a == 1 FROM A` with debugger
+---
+
+#### Logger
+
+Every function call is logged in a file named "log"
+
 ### Non-Assignment Statements
 
 - Non-assignment statements do not create a new table (except load, which loads an existing table) in the process
@@ -329,63 +387,5 @@ COMPUTE <matrix_name>
 - Computes the expression: `A - A'` where `A'` represents the transpose of the matrix `A`
 - The new matrix is stored as `<matrix_name>_RESULT`
 ---
-
-### Internals
-
-- Buffer Manager, Cursors, Tables, Matrices, Executors
----
-
-#### Command Execution Flow
-
-![](flow.png)
-
----
-
-#### Syntactic Parser
-
-- Splits the query into query units
-
-#### Semantic Parser
-
-- Makes sure the given query makes semantic sense
----
-
-#### Executors
-
-Every command(COMMAND) has a file in the executors' directory
-
-```
-syntacticParseCOMMAND
-semanticParseCOMMAND
-executeCOMMAND
-```
-
----
-
-#### Buffer Manager
-
-- Load splits and stores the table into blocks.
-- It follows a FIFO paradigm.
----
-
-#### Table Catalogue
-
-- The table catalogue is an index of tables & matrices currently loaded into the system
----
-
-#### Cursors
-
-- A cursor is an object that acts like a pointer in a table.
-- To read from a table, we need to declare a cursor
-
-![image](https://github.com/user-attachments/assets/8bba0815-feb5-434d-941a-e96599d4c565)
-
-
-- Example Command: `R <- SELECT a == 1 FROM A` with debugger
----
-
-#### Logger
-
-Every function call is logged in a file named "log"
 
 
