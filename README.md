@@ -62,6 +62,8 @@ There are 3 kinds of commands in this database:
 
 - Splits the query into query units
 
+---
+
 #### Semantic Parser
 
 - Makes sure the given query makes semantic sense
@@ -104,6 +106,8 @@ executeCOMMAND
 #### Logger
 
 Every function call is logged in a file named "log"
+
+---
 
 ### Non-Assignment Statements
 
@@ -386,6 +390,6 @@ COMPUTE <matrix_name>
 
 - Computes the expression: `A - A'` where `A'` represents the transpose of the matrix `A`
 - The new matrix is stored as `<matrix_name>_RESULT`
----
+
 
 
