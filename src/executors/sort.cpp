@@ -157,7 +157,7 @@ void executeSORT()
     uint currPageIndex = 0;
     while (i <= numRuns)
     {
-        // read BLOCk_COUNT in memory
+        // read BLOCK_COUNT in memory
         vector<vector<int>> sortRows;
         for (uint j = currPageIndex; j < min(currPageIndex + BLOCK_COUNT, table.blockCount); j++)
         {

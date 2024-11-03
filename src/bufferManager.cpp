@@ -18,9 +18,8 @@ Page BufferManager::getPage(string tableName, int pageIndex, bool isMatrix)
     logger.log("BufferManager::getPage");
     string pageName = "../data/temp/" + tableName + "_Page" + to_string(pageIndex);
     if (this->inPool(pageName))
-        return this->getFromPool(pageName);
-    else
-        BLOCK_READ++;
+        return this->getFromPool(pageName);    
+    BLOCK_READ++;
     return this->insertIntoPool(tableName, pageIndex, isMatrix);
 }
 
